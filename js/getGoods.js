@@ -1,5 +1,6 @@
 const getGoods = function () {
   const links = document.querySelectorAll('.navigation-link');
+  const more = document.querySelector('.more');
 
   const renderGoods = (goods) => {
     const goodsContainer = document.querySelector('.long-goods-list');
@@ -88,6 +89,15 @@ const getGoods = function () {
 
   // localStorage.removeItem удалит строку из localStorage по ключу
   //* localStorage.removeItem('goods');
+
+  // вешаем слушатель событий на кнопку view all
+  if (more) {
+    more.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      getData();
+    });
+  }
 
 }
 
