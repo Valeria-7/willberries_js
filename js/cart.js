@@ -90,21 +90,25 @@ const cart = function () {
       })
     })
   }
-
+  
   // отправка формы на тестовое API
   const sendForm = () => {
     const cartArray = localStorage.getItem('cart') ? 
       JSON.parse(localStorage.getItem('cart')) : [];
+    const modalInputs = document.querySelectorAll('.modal-input');
+    const name = modalInputs[0].value;
+    const phone = modalInputs[1].value;
+
     fetch('https://jsonplaceholder.typicode.com/posts', {
       method: 'POST',
       body: JSON.stringify({
         cart: cartArray,
-        name: '',
-        phone: '' // получить данные
+        name: name,
+        phone: phone 
       })
     }).then(() => {
       cart.style.display = '';
-      // очистить localStorage
+      localStorage.removeItem('cart');
     })
   }
 
